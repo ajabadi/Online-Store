@@ -17,6 +17,8 @@ db.once('open', async () => {
 
   console.log('categories seeded');
 
+  await Product.deleteMany();
+
   const products = await Product.insertMany([
     {
       name: 'Tin of Cookies',

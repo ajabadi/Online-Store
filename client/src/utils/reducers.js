@@ -10,11 +10,19 @@ import {
   TOGGLE_CART,
 } from './actions';
 
+const initialState = {
+  products: [],
+  cart: [],
+  cartOpen: false,
+  categories: [],
+  currentCategory: '',
+};
+
 // TODO: To get a better understand of how a reducer works - add comments to the various actions in the reducer
-export const reducer = (state, action) => {
+const reducer = ( state = initialState, action) => {
   switch (action.type) {
     // TODO: Add a comment describing the functionality of the UPDATE_PRODUCTS case
-    // Your comment here
+    // Updates the product list with the payload from the action
     case UPDATE_PRODUCTS:
       return {
         ...state,
@@ -34,7 +42,7 @@ export const reducer = (state, action) => {
         cart: [...state.cart, ...action.products],
       };
     // TODO: Add a comment describing the functionality of the UPDATE_CART_QUANTITY case
-    // Your comment here
+    // Can update the quantity of an item in the cart
     case UPDATE_CART_QUANTITY:
       return {
         ...state,
@@ -48,7 +56,7 @@ export const reducer = (state, action) => {
       };
 
     // TODO: Add a comment describing the functionality of the REMOVE_FROM_CART case
-    // Your comment here
+    // Removes items from the cart and automatically closes the cart if it's empty
     case REMOVE_FROM_CART:
       let newState = state.cart.filter((product) => {
         return product._id !== action._id;
@@ -86,8 +94,10 @@ export const reducer = (state, action) => {
       };
 
     // TODO: Add a comment describing what the default case is for
-    // Your comment here
+    // Returns the current state unchanged in case of an action that doesn't match any cases
     default:
       return state;
   }
 };
+
+export default reducer;

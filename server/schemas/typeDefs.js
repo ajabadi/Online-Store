@@ -1,3 +1,5 @@
+const { gql } = require('@apollo/server');
+
 const typeDefs = `
   type Category {
     _id: ID
